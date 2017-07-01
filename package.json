@@ -1,0 +1,22 @@
+{
+  "name": "express-router-ns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "mocha dist/test",
+    "benchmark": "node benchmark.js",
+    "build": "babel src -d dist",
+    "prepublish": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "chai": "^4.0.2",
+    "express": "^4.15.3",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
+  }
+}

@@ -1,4 +1,4 @@
-const methods = require('http').METHODS.map(methodName => methodName.toLowerCase());
+const methods = require('methods').concat(['all']);
 
 module.exports = function(ParentRouter) {
   class ExpressRouterNs extends ParentRouter {

@@ -4,12 +4,14 @@ const request = require('supertest');
 
 describe('ExpressRouterNs', () => {
   let app;
-  let appRouter = new ExpressRouterNs();
+  let appRouter;
   beforeEach(function() {
     app = express();
+    appRouter = new ExpressRouterNs();
     app.use(appRouter);
   });
   const send200 = (req, res) => res.end();
+  const send500 = (req, res) => res.status(500).end();
   const assertRoute = path => request(app).get(path).expect(200);
   
   it('should handle simple request', () => {
@@ -39,7 +41,6 @@ describe('ExpressRouterNs', () => {
       
     return assertRoute('/user2');
   });
-  
   
   it('should handle multi-level namespace and restore', () => {
     appRouter.namespace('/foo1', () => {

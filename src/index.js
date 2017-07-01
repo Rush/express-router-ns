@@ -1,4 +1,4 @@
-const methods = require('methods').concat(['all']);
+const methods = require('methods').concat(['all', 'use']);
 
 module.exports = function(ParentRouter) {
   class ExpressRouterNs extends ParentRouter {
@@ -7,7 +7,7 @@ module.exports = function(ParentRouter) {
       
       const appRouter = this;
       appRouter.namespace = function routerNamespace(namespacePath, cb) {
-          var router = new ParentRouter(_options);
+          const router = new ParentRouter(_options);
           const saveMethods = frame => {
             methods.forEach(function(methodName) {
                 frame[methodName] = appRouter[methodName];
@@ -19,7 +19,6 @@ module.exports = function(ParentRouter) {
                 appRouter[methodName] = frame[methodName];
             });
           }
-          
           this.use(namespacePath, router);
           var oldNamespace = appRouter.namespace;
           appRouter.namespace = function(namespacePath, cb) {
